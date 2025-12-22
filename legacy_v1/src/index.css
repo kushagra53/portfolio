@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #000000;
+  /* True Black */
+  --color-secondary: #0a0a0a;
+  /* Very slight off-black for cards */
+  --color-accent: #FFFFFF;
+  /* Pure White */
+  --color-text-main: #FFFFFF;
+  --color-text-muted: #888888;
+  /* Neutral Gray */
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-primary);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar - Minimal */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666666;
+}
+
+/* Minimalist Utilities */
+.border-minimal {
+  border: 1px solid #333333;
+}
+
+.text-massive {
+  font-size: clamp(3rem, 10vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
