@@ -38,12 +38,12 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     <Link href="/" className="group flex items-center gap-4">
-                        <div className="relative flex items-center justify-center w-12 h-12 border-2 border-[#64ffda] rounded-sm bg-[#0a192f] group-hover:bg-[#64ffda]/20 transition-all shadow-[0_0_10px_rgba(100,255,218,0.3)]">
-                            <Shield className="w-8 h-8 text-[#64ffda]" />
+                        <div className="relative flex items-center justify-center w-12 h-12 border-2 border-[#64ffda] rounded-sm bg-[#0a192f] group-hover:bg-[#64ffda]/20 transition-all shadow-[0_0_10px_rgba(100,255,218,0.3)]" suppressHydrationWarning>
+                            <Shield className="w-8 h-8 text-[#64ffda]" suppressHydrationWarning />
                         </div>
                         <div className="flex flex-col">
                             <span className="text-[#e6f1ff] font-bold font-mono tracking-tighter text-2xl leading-none group-hover:animate-glitch">
-                                JAYPEE<span className="text-[#64ffda]">.DEV</span>
+                                KUSHAGRA<span className="text-[#64ffda]">.PANDEY</span>
                             </span>
                             <span className="text-xs text-[#8892b0] font-mono tracking-[0.2em] mt-1 pl-0.5">
                                 SECURE//SYSTEMS
@@ -66,7 +66,7 @@ const Navbar = () => {
                                 </Link>
                             ))}
                         </div>
-                        <button className="px-4 py-2 border border-[#64ffda] text-[#64ffda] text-sm font-mono rounded hover:bg-[#64ffda]/10 transition-all focus:outline-none focus:ring-1 focus:ring-[#64ffda]">
+                        <button className="px-4 py-2 bg-[#64ffda]/10 border border-[#64ffda] text-[#64ffda] text-sm font-mono rounded hover:bg-[#64ffda]/20 transition-all focus:outline-none focus:ring-1 focus:ring-[#64ffda] shadow-[0_0_10px_rgba(100,255,218,0.2)]">
                             Resume.pdf
                         </button>
                     </div>
@@ -75,8 +75,9 @@ const Navbar = () => {
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                         className="md:hidden text-[#64ffda] p-2 hover:bg-[#112240] rounded focus:outline-none"
+                        suppressHydrationWarning
                     >
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                        {isOpen ? <X size={24} suppressHydrationWarning /> : <Menu size={24} suppressHydrationWarning />}
                     </button>
                 </div>
             </div>

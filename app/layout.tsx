@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} ${firaCode.variable} font-sans bg-[#0a192f] text-[#e6f1ff] antialiased selection:bg-[#64ffda] selection:text-[#0a192f] flex flex-col min-h-screen`}>
+      <body className={`${inter.variable} ${firaCode.variable} font-sans bg-[#0a192f] text-[#e6f1ff] antialiased selection:bg-[#64ffda] selection:text-[#0a192f] flex flex-col min-h-screen`} suppressHydrationWarning>
         <ParticleBackground />
         <Navbar />
         <main className="flex-grow pt-16 relative z-10">
