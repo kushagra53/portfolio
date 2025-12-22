@@ -1,20 +1,18 @@
 import { motion } from 'framer-motion';
 import Card from '../components/Card';
-import Button from '../components/Button';
-import { Github, ExternalLink, Database, Cloud, Lock, BookOpen } from 'lucide-react';
+import { Github, ExternalLink, Database, Cloud, Lock, BookOpen, FolderGit2 } from 'lucide-react';
 
 const Projects = () => {
     const projects = [
         {
             title: 'NSL-KDD Anomaly Detection',
-            description: 'Network Intrusion Detection System using Machine Learning. Implemented and optimized Random Forest Classifier using GridSearchCV to detect network anomalies with high precision.',
+            description: 'Network Intrusion Detection System utilizing Machine Learning. Implemented and optimized Random Forest Classifier using GridSearchCV to detect network anomalies with high precision.',
             tags: ['Python', 'Scikit-learn', 'Random Forest', 'Cybersecurity'],
             links: { github: '#', demo: null },
             icon: Lock,
             metrics: [
                 { model: 'Random Forest', accuracy: '99.8%', precision: '99.7%', recall: '99.9%' },
                 { model: 'SVM', accuracy: '96.5%', precision: '95.2%', recall: '97.1%' },
-                { model: 'Logistic Reg', accuracy: '92.3%', precision: '89.5%', recall: '93.0%' },
             ]
         },
         {
@@ -33,7 +31,7 @@ const Projects = () => {
         },
         {
             title: 'Book Recommender System',
-            description: 'Collaborative filtering based recommendation engine. Suggests books based on user reading history and preferences.',
+            description: 'Collaborative filtering based recommendation engine. Suggests books based on user reading history and preferences using matrix factorization.',
             tags: ['Python', 'Pandas', 'Colab', 'ML'],
             links: { github: '#', colab: '#' },
             icon: BookOpen,
@@ -41,19 +39,19 @@ const Projects = () => {
     ];
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-24">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-16"
+                className="text-center mb-20"
             >
-                <h1 className="text-4xl font-bold mb-4">Featured <span className="text-[#00D4FF]">Projects</span></h1>
-                <p className="text-gray-400 max-w-2xl mx-auto">
+                <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[#E6F1FF]">Featured <span className="text-[#64FFDA]">Projects</span></h1>
+                <p className="text-[#8892B0] max-w-2xl mx-auto text-lg">
                     A showcase of my technical projects ranging from Machine Learning models to Full Stack Web Applications.
                 </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 {projects.map((project, index) => (
                     <motion.div
                         key={index}
@@ -62,51 +60,56 @@ const Projects = () => {
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.1 }}
                     >
-                        <Card className="h-full flex flex-col hover:border-[#00D4FF]/50 transition-colors duration-300">
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="p-3 rounded-lg bg-[#00D4FF]/10 text-[#00D4FF]">
-                                    <project.icon size={24} />
+                        <Card className="h-full flex flex-col group relative overflow-hidden">
+                            {/* Decoration */}
+                            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                                <FolderGit2 size={100} />
+                            </div>
+
+                            <div className="flex items-center justify-between mb-6 relative z-10">
+                                <div className="p-3 rounded-lg bg-[#112240] text-[#64FFDA] border border-[#233554]">
+                                    <project.icon size={28} />
                                 </div>
-                                <div className="flex gap-2">
+                                <div className="flex gap-4">
                                     {project.links.github && (
-                                        <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                                            <Github size={20} />
+                                        <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="text-[#8892B0] hover:text-[#64FFDA] transition-colors">
+                                            <Github size={22} />
                                         </a>
                                     )}
                                     {project.links.demo && (
-                                        <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                                            <ExternalLink size={20} />
+                                        <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="text-[#8892B0] hover:text-[#64FFDA] transition-colors">
+                                            <ExternalLink size={22} />
                                         </a>
                                     )}
                                     {project.links.colab && (
-                                        <a href={project.links.colab} target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 transition-colors">
-                                            <BookOpen size={20} />
+                                        <a href={project.links.colab} target="_blank" rel="noopener noreferrer" className="text-[#8892B0] hover:text-[#FF9900] transition-colors">
+                                            <BookOpen size={22} />
                                         </a>
                                     )}
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
-                            <p className="text-gray-400 text-sm mb-4 flex-grow">{project.description}</p>
+                            <h3 className="text-2xl font-bold mb-3 text-[#E6F1FF] group-hover:text-[#64FFDA] transition-colors relative z-10">{project.title}</h3>
+                            <p className="text-[#8892B0] text-sm mb-6 flex-grow leading-relaxed relative z-10">{project.description}</p>
 
                             {project.metrics && (
-                                <div className="mb-4 overflow-x-auto">
-                                    <table className="w-full text-xs text-left text-gray-400">
-                                        <thead className="text-gray-200 bg-[#0A2540] uppercase">
+                                <div className="mb-6 overflow-hidden rounded-lg border border-[#233554] relative z-10">
+                                    <table className="w-full text-xs text-left text-[#8892B0]">
+                                        <thead className="bg-[#112240] text-[#E6F1FF]">
                                             <tr>
-                                                <th className="px-2 py-1 rounded-l">Model</th>
-                                                <th className="px-2 py-1">Acc</th>
-                                                <th className="px-2 py-1">Prec</th>
-                                                <th className="px-2 py-1 rounded-r">Recall</th>
+                                                <th className="px-3 py-2 font-semibold">Model</th>
+                                                <th className="px-3 py-2 font-semibold">Acc</th>
+                                                <th className="px-3 py-2 font-semibold">Prec</th>
+                                                <th className="px-3 py-2 font-semibold">Recall</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody className="bg-[#0A192F]/50">
                                             {project.metrics.map((m, i) => (
-                                                <tr key={i} className="border-b border-[#234b6e] last:border-0">
-                                                    <td className="px-2 py-1 font-medium text-[#00D4FF]">{m.model}</td>
-                                                    <td className="px-2 py-1">{m.accuracy}</td>
-                                                    <td className="px-2 py-1">{m.precision}</td>
-                                                    <td className="px-2 py-1">{m.recall}</td>
+                                                <tr key={i} className="border-b border-[#233554] last:border-0 hover:bg-[#112240] transition-colors">
+                                                    <td className="px-3 py-2 font-medium text-[#64FFDA]">{m.model}</td>
+                                                    <td className="px-3 py-2">{m.accuracy}</td>
+                                                    <td className="px-3 py-2">{m.precision}</td>
+                                                    <td className="px-3 py-2">{m.recall}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -114,9 +117,9 @@ const Projects = () => {
                                 </div>
                             )}
 
-                            <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-[#234b6e]">
+                            <div className="flex flex-wrap gap-2 mt-auto pt-4 relative z-10">
                                 {project.tags.map((tag) => (
-                                    <span key={tag} className="text-xs font-medium px-2 py-1 rounded-full bg-[#0A2540] text-[#00D4FF] border border-[#234b6e]">
+                                    <span key={tag} className="text-xs font-mono px-2 py-1 rounded text-[#64FFDA]">
                                         {tag}
                                     </span>
                                 ))}

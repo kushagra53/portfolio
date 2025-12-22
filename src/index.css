@@ -1,15 +1,57 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0A2540;
-  --color-accent: #00D4FF;
-  --color-background: #0A2540;
-  --color-surface: #112D4E; /* Slightly lighter for cards */
+  --color-primary: #0A192F;
+  /* Deep Navy Background */
+  --color-secondary: #112240;
+  /* Card Background */
+  --color-accent: #64FFDA;
+  /* Teal Accent */
+  --color-accent-dim: rgba(100, 255, 218, 0.1);
+  --color-text-main: #E6F1FF;
+  /* Off-white for high contrast */
+  --color-text-muted: #8892B0;
+  /* Muted blue-grey */
   --font-sans: 'Inter', system-ui, sans-serif;
 }
 
 body {
-    background-color: var(--color-background);
-    color: white;
-    font-family: var(--font-sans);
+  background-color: var(--color-primary);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll from animations */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #233554;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64FFDA;
+}
+
+/* Utilities */
+.glass-panel {
+  background: rgba(17, 34, 64, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #E6F1FF 0%, #64FFDA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
