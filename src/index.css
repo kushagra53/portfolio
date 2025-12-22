@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0A2540;
+  --color-accent: #00D4FF;
+  --color-background: #0A2540;
+  --color-surface: #112D4E; /* Slightly lighter for cards */
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--color-background);
+    color: white;
+    font-family: var(--font-sans);
+}
