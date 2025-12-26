@@ -157,44 +157,96 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="bg-[#0a0f14] border-x border-b border-[#333] p-6 font-mono text-base leading-relaxed text-[#c5c8c6] rounded-b-lg h-full min-h-[400px]">
-              <p className="mb-4">
-                <span className="text-[#27c93f]">root@kali</span>:<span className="text-[#4e97d6]">~</span># ./display_bio.sh
-              </p>
-              <div className="pl-2 border-l-2 border-[#233554] mb-4">
-                <p className="mb-2"><span className="text-[#ffbd2e]">User:</span> Kushagra Pandey</p>
-                <p className="mb-2"><span className="text-[#ffbd2e]">Role:</span> ML & Cybersecurity Engineer</p>
-                <p className="mb-2"><span className="text-[#ffbd2e]">University:</span> Jaypee University of Information Technology</p>
-                <p className="mb-2"><span className="text-[#ffbd2e]">Mission:</span> Defending AI against adversarial threats.</p>
+            <div className="bg-[#0a0f14] border-x border-b border-[#333] p-6 font-mono text-base leading-relaxed text-[#c5c8c6] rounded-b-lg h-full min-h-[450px] overflow-y-auto custom-scrollbar">
+              <div className="mb-6">
+                <p className="text-[#8892b0] italic mb-2">// 3rd-Year CSE Student @ JUIT</p>
+                <p className="text-[#e6f1ff]">
+                  My stack is a hybrid of <span className="text-[#64ffda]">Offensive Security</span> and <span className="text-[#64ffda]">Deep Learning</span>. Currently exploring Cloud Architecture to build systems that are secure by design, not just by patch.
+                </p>
               </div>
-              <p className="mb-4 text-[#8892b0]">
-                &gt; I specialize in bridging the gap between high-performance ML models and robust security protocols.
-              </p>
-              <p className="mb-4 text-[#8892b0]">
-                &gt; Regularly practice CTFs and ethical hacking labs to sharpen practical security skills.
-              </p>
-              <p>
+
+              <div className="space-y-4">
+                <div>
+                  <p className="flex items-center gap-2">
+                    <span className="text-[#27c93f]">root@kali</span>:<span className="text-[#4e97d6]">~</span># ./current_status.sh
+                  </p>
+                  <p className="pl-4 text-[#64ffda]">🟢 OPEN TO WORK: Internship / Freelance Projects.</p>
+                  <p className="pl-4 text-[#a8b2d1]">Focus: ML Security & Cloud Infrastructure.</p>
+                </div>
+
+                <div>
+                  <p className="flex items-center gap-2">
+                    <span className="text-[#27c93f]">root@kali</span>:<span className="text-[#4e97d6]">~</span># cat print_hobbies.txt
+                  </p>
+                  <p className="pl-4 text-[#c5c8c6]">♟️ Chess | 🛡️ CTF Player</p>
+                </div>
+
+                <div>
+                  <p className="flex items-center gap-2">
+                    <span className="text-[#27c93f]">root@kali</span>:<span className="text-[#4e97d6]">~</span># list_certs --all
+                  </p>
+                  <ul className="pl-4 space-y-1">
+                    <li className="text-[#ffbd2e] font-bold">★ Oracle Cloud Infrastructure AI Foundations Associate (2025)</li>
+                    <li className="text-[#a8b2d1]">★ Ethical Hacking Certification</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="flex items-center gap-2">
+                    <span className="text-[#27c93f]">root@kali</span>:<span className="text-[#4e97d6]">~</span># cat location_config.json
+                  </p>
+                  <p className="pl-4 text-[#a8b2d1]">
+                    &#123; "location": "📍 India", "preference": "Remote", "relocation": "Required (Sponsorship/Assistance)" &#125;
+                  </p>
+                </div>
+              </div>
+
+              <p className="mt-6">
                 <span className="text-[#27c93f]">root@kali</span>:<span className="text-[#4e97d6]">~</span># <span className="animate-pulse">_</span>
               </p>
             </div>
           </div>
 
-          {/* Skill Cloud (40%) */}
-          <div className="w-full md:w-[40%] pt-20">
-            <div className="bg-[#112240] p-6 rounded-lg border border-[#233554]">
-              <h3 className="text-[#64ffda] font-mono text-xl mb-6 font-bold">&lt;Tech_Stack /&gt;</h3>
-              <div className="flex flex-wrap gap-3">
-                {skills.map((skill, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className="flex items-center gap-2 px-4 py-2 bg-[#0a192f] border border-[#233554] rounded-full hover:border-[#64ffda] transition-colors cursor-default"
-                  >
-                    <skill.icon className="text-[#64ffda] w-4 h-4" suppressHydrationWarning />
-                    <span className="text-[#a8b2d1] font-mono text-sm">{skill.name}</span>
-                  </motion.div>
-                ))}
+          {/* Skill Modules (40%) */}
+          <div className="w-full md:w-[40%] flex flex-col gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Module A */}
+              <div className="bg-[#112240] p-5 rounded-lg border border-[#233554] hover:border-[#64ffda]/50 transition-colors group">
+                <h3 className="text-[#64ffda] font-mono text-sm mb-3 font-bold group-hover:translate-x-1 transition-transform tracking-tight">01. Offensive Security</h3>
+                <p className="text-[#e6f1ff] text-sm font-bold mb-2">Kali Linux Arsenal</p>
+                <p className="text-[#8892b0] text-xs mb-3 leading-relaxed">Familiar with full Kali toolset for vulnerability assessment.</p>
+                <p className="text-[#64ffda] text-[15px] font-mono">Burp Suite · Metasploit · Nmap · Wireshark</p>
               </div>
+
+              {/* Module B */}
+              <div className="bg-[#112240] p-5 rounded-lg border border-[#233554] hover:border-[#64ffda]/50 transition-colors group">
+                <h3 className="text-[#64ffda] font-mono text-sm mb-3 font-bold group-hover:translate-x-1 transition-transform tracking-tight">02. Cloud & Infra</h3>
+                <p className="text-[#e6f1ff] text-sm font-bold mb-2">Cloud Architecture</p>
+                <p className="text-[#8892b0] text-xs mb-3 leading-relaxed">Building secure, scalable infrastructure as code.</p>
+                <p className="text-[#64ffda] text-[15px] font-mono">Oracle OCI · AWS (Learning) · Terraform</p>
+              </div>
+
+              {/* Module C */}
+              <div className="bg-[#112240] p-5 rounded-lg border border-[#233554] hover:border-[#64ffda]/50 transition-colors group">
+                <h3 className="text-[#64ffda] font-mono text-sm mb-3 font-bold group-hover:translate-x-1 transition-transform tracking-tight">03. Deep Learning</h3>
+                <p className="text-[#e6f1ff] text-sm font-bold mb-2">Neural Networks</p>
+                <p className="text-[#8892b0] text-xs mb-3 leading-relaxed">Experience with image processing and deep learning architectures.</p>
+                <p className="text-[#64ffda] text-[15px] font-mono">CNNs · TensorFlow/Keras · OpenCV</p>
+              </div>
+
+              {/* Module D */}
+              <div className="bg-[#112240] p-5 rounded-lg border border-[#233554] hover:border-[#64ffda]/50 transition-colors group">
+                <h3 className="text-[#64ffda] font-mono text-sm mb-3 font-bold group-hover:translate-x-1 transition-transform tracking-tight">04. Core Dev</h3>
+                <p className="text-[#e6f1ff] text-sm font-bold mb-2">The Stack</p>
+                <p className="text-[#8892b0] text-xs mb-3 leading-relaxed"> foundation in backend logic and modern frontend frameworks.</p>
+                <p className="text-[#64ffda] text-[15px] font-mono">Python Scripter · Bash</p>
+              </div>
+            </div>
+
+            <div className="bg-[#64ffda]/5 border border-[#64ffda]/20 p-4 rounded-lg">
+              <p className="text-[#64ffda] font-mono text-xs leading-relaxed">
+                <span className="font-bold">SYSTEM_NOTE:</span> Regularly practice CTFs and ethical hacking labs to sharpen practical security skills.
+              </p>
             </div>
           </div>
         </div>

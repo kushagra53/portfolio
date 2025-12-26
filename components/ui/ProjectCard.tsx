@@ -58,14 +58,14 @@ const ProjectCard = ({ title, type, description, details, techStack, link }: Pro
         >
             <div className="relative z-10 flex flex-col h-full">
                 {/* Header */}
-                <div style={{ transform: "translateZ(20px)" }} className="mb-4">
+                <div style={{ transform: "translateZ(25px)" }} className="mb-4">
                     <p className="text-[#64ffda] font-mono text-xs mb-1 uppercase tracking-widest">{type}</p>
                     <h3 className="text-[#e6f1ff] text-2xl font-bold group-hover:text-[#64ffda] transition-colors tracking-tight leading-tight">{title}</h3>
                 </div>
 
                 {/* Description */}
-                <div style={{ transform: "translateZ(15px)" }} className="mb-6">
-                    <p className="text-[#a8b2d1] text-[15px] leading-relaxed font-light mb-4">
+                <div style={{ transform: "translateZ(18px)" }} className="mb-6">
+                    <p className="text-[#a8b2d1] text-[18px] leading-relaxed font-light mb-4">
                         {description}
                     </p>
                     {details && details.length > 0 && (
@@ -81,8 +81,8 @@ const ProjectCard = ({ title, type, description, details, techStack, link }: Pro
                 </div>
 
                 {/* Tech Stack Footer */}
-                <div style={{ transform: "translateZ(10px)" }} className="mt-auto">
-                    <div className="text-[#64ffda] text-[13px] font-mono mb-6 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+                <div style={{ transform: "translateZ(16px)" }} className="mt-auto">
+                    <div className="text-[#64ffda] text-[16px] font-mono mb-6 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
                         <span className="text-[#8892b0] mr-2">Tech Stack:</span>
                         {techStack.join(" · ")}
                     </div>
