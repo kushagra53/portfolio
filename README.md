@@ -1,7 +1,5 @@
 # Secure Void Portfolio
 
-A minimalist, cybersecurity-themed developer portfolio built with Next.js 14, Tailwind CSS, and Framer Motion.
-
 ## 🚀 Tech Stack
 - **Framework**: Next.js 14 (App Router)
 - **Styling**: Tailwind CSS v3.4 + `@tailwindcss/typography`
