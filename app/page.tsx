@@ -68,7 +68,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* HERO SECTION */}
-      <section className="min-h-screen flex flex-col items-center justify-center relative px-6 text-center">
+      <section className="min-h-screen flex flex-col items-center justify-center relative px-6 text-center overflow-hidden">
         <div className="z-10 max-w-4xl">
           <p className="text-[#64ffda] font-mono text-sm mb-4 tracking-widest animate-pulse">
             &gt; INITIALIZING SECURE CONNECTION...
@@ -135,7 +135,7 @@ export default function Home() {
 
       {/* ABOUT SECTION (SYSTEM LOGS) */}
       {/* ABOUT SECTION (SYSTEM LOGS) */}
-      <section id="about" className="py-24 px-6 md:px-12 max-w-7xl mx-auto w-full">
+      <section id="about" className="py-24 px-6 md:px-12 max-w-7xl mx-auto w-full mb-24">
         <div className="flex flex-col md:flex-row gap-16 items-start">
           {/* Terminal Bio (60%) */}
           <div className="w-full md:w-[60%]">
@@ -209,6 +209,9 @@ export default function Home() {
 
           {/* Skill Modules (40%) */}
           <div className="w-full md:w-[40%] flex flex-col gap-6">
+            <h3 className="text-2xl font-mono text-cyan-400 mb-6 border-b border-cyan-900/50 pb-2 tracking-tighter">
+              &gt;&gt; MODULE_CONFIGURATION
+            </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Module A */}
               <div className="bg-[#112240] p-5 rounded-lg border border-[#233554] hover:border-[#64ffda]/50 transition-colors group">
@@ -254,37 +257,39 @@ export default function Home() {
 
       {/* CONTACT SECTION (ENCRYPTED COMMS) */}
       <section id="contact" className="w-full bg-[#0d1f3a] py-32 border-t border-[#112240]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-[#64ffda] font-mono mb-4">03. What&apos;s Next?</p>
-          <h2 className="text-5xl md:text-6xl font-bold text-[#e6f1ff] mb-8">Encrypted Comms</h2>
-          <p className="text-[#8892b0] text-lg mb-12 max-w-2xl mx-auto">
-            Secure channels are open. Whether you have a mission for a security engineer or just want to exchange public keys, I&apos;m ready to connect.
-          </p>
+        <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-8">
+          <div>
+            <p className="text-[#64ffda] font-mono mb-4 text-sm tracking-widest uppercase">03. Mission Control</p>
+            <h2 className="text-5xl md:text-7xl font-bold text-[#e6f1ff] mb-6 tracking-tighter">Encrypted Comms</h2>
+            <p className="text-[#8892b0] text-lg max-w-2xl mx-auto leading-relaxed">
+              Secure channels are open. Whether you have a mission for a security engineer or just want to exchange public keys, I&apos;m ready to connect through secure protocols.
+            </p>
+          </div>
 
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-16">
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center w-full">
             <a
               href="mailto:contact@kushagra.dev"
-              className="px-8 py-5 border-[2px] border-[#64ffda] text-[#64ffda] font-bold font-mono text-lg rounded hover:bg-[#64ffda]/10 transition-all hover:shadow-[0_0_20px_rgba(100,255,218,0.3)]"
+              className="px-10 py-5 border-[2px] border-[#64ffda] text-[#64ffda] font-bold font-mono text-lg rounded hover:bg-[#64ffda]/10 transition-all hover:shadow-[0_0_25px_rgba(100,255,218,0.2)] text-center w-full md:w-auto"
             >
               INITIALIZE_EMAIL_HANDSHAKE
             </a>
-            <button className="px-8 py-5 bg-[#112240] text-cyan-400 font-bold font-mono text-lg rounded hover:bg-[#112240]/80 transition-all border border-cyan-500/20">
+            <button className="px-10 py-5 bg-cyan-500 hover:bg-cyan-400 text-[#0a192f] font-bold font-mono text-lg rounded shadow-[0_0_20px_rgba(100,255,218,0.3)] transition-all text-center w-full md:w-auto">
               DOWNLOAD_CV_V1.0
             </button>
           </div>
 
-          <div className="flex items-center justify-center gap-8">
-            <a href="#" className="text-[#a8b2d1] hover:text-[#64ffda] transition-all transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(100,255,218,0.5)] rounded-full p-2 bg-[#112240] border border-[#233554]">
-              <Github size={32} suppressHydrationWarning />
+          <div className="flex items-center justify-center space-x-12 mt-4">
+            <a href="#" className="text-[#a8b2d1] hover:text-[#64ffda] transition-all transform hover:-translate-y-2 hover:drop-shadow-[0_0_10px_rgba(100,255,218,0.5)]">
+              <Github className="w-10 h-10" suppressHydrationWarning />
             </a>
-            <a href="#" className="text-[#a8b2d1] hover:text-[#64ffda] transition-all transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(100,255,218,0.5)] rounded-full p-2 bg-[#112240] border border-[#233554]">
-              <Linkedin size={32} suppressHydrationWarning />
+            <a href="#" className="text-[#a8b2d1] hover:text-[#64ffda] transition-all transform hover:-translate-y-2 hover:drop-shadow-[0_0_10px_rgba(100,255,218,0.5)]">
+              <Linkedin className="w-10 h-10" suppressHydrationWarning />
             </a>
-            <a href="#" className="text-[#a8b2d1] hover:text-[#64ffda] transition-all transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(100,255,218,0.5)] rounded-full p-2 bg-[#112240] border border-[#233554]">
-              <Twitter size={32} suppressHydrationWarning />
+            <a href="#" className="text-[#a8b2d1] hover:text-[#64ffda] transition-all transform hover:-translate-y-2 hover:drop-shadow-[0_0_10px_rgba(100,255,218,0.5)]">
+              <Twitter className="w-10 h-10" suppressHydrationWarning />
             </a>
-            <a href="#" className="text-[#a8b2d1] hover:text-[#64ffda] transition-all transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(100,255,218,0.5)] rounded-full p-2 bg-[#112240] border border-[#233554]">
-              <Mail size={32} suppressHydrationWarning />
+            <a href="#" className="text-[#a8b2d1] hover:text-[#64ffda] transition-all transform hover:-translate-y-2 hover:drop-shadow-[0_0_10px_rgba(100,255,218,0.5)]">
+              <Mail className="w-10 h-10" suppressHydrationWarning />
             </a>
           </div>
         </div>

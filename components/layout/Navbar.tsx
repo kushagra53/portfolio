@@ -9,14 +9,29 @@ import { cn } from "@/lib/utils";
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [visible, setVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            const currentScrollY = window.scrollY;
+
+            // Background blur threshold
+            setScrolled(currentScrollY > 50);
+
+            // Auto-hide logic
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                setVisible(false); // Scrolling down
+            } else {
+                setVisible(true); // Scrolling up
+            }
+
+            setLastScrollY(currentScrollY);
         };
-        window.addEventListener("scroll", handleScroll);
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [lastScrollY]);
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -28,15 +43,16 @@ const Navbar = () => {
     return (
         <nav
             className={cn(
-                "fixed w-full z-50 transition-all duration-300 border-b border-transparent",
+                "fixed w-full z-50 transition-all duration-500 border-b border-transparent",
                 scrolled
-                    ? "bg-[#0a192f]/80 backdrop-blur-md border-[#64ffda]/10 py-2 shadow-[0_10px_30px_-10px_rgba(2,12,27,0.7)]"
-                    : "bg-transparent py-4"
+                    ? "bg-[#0a192f]/90 backdrop-blur-lg border-[#64ffda]/10 py-2 shadow-[0_10px_30px_-10px_rgba(2,12,27,0.7)]"
+                    : "bg-transparent py-4",
+                !visible && !isOpen ? "-translate-y-full" : "translate-y-0"
             )}
         >
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
                 <div className="flex items-center justify-between h-16">
-                    {/* Logo */}
+                    {/* Logo remains the same */}
                     <Link href="/" className="group flex items-center gap-4">
                         <div className="relative flex items-center justify-center w-12 h-12 border-2 border-[#64ffda] rounded-sm bg-[#0a192f] group-hover:bg-[#64ffda]/20 transition-all shadow-[0_0_10px_rgba(100,255,218,0.3)]" suppressHydrationWarning>
                             <Shield className="w-8 h-8 text-[#64ffda]" suppressHydrationWarning />
@@ -74,41 +90,65 @@ const Navbar = () => {
                     {/* Mobile Toggle */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden text-[#64ffda] p-2 hover:bg-[#112240] rounded focus:outline-none"
+                        className="md:hidden text-[#64ffda] p-2 hover:bg-[#112240] rounded focus:outline-none z-[60] relative"
                         suppressHydrationWarning
                     >
-                        {isOpen ? <X size={24} suppressHydrationWarning /> : <Menu size={24} suppressHydrationWarning />}
+                        {isOpen ? <X size={28} suppressHydrationWarning /> : <Menu size={28} suppressHydrationWarning />}
                     </button>
                 </div>
             </div>
 
-            {/* Mobile Menu Overlay */}
+            {/* Mobile Menu Overlay - Force Right Side Fix */}
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, x: "100%" }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: "100%" }}
-                        transition={{ type: "tween", duration: 0.3 }}
-                        className="fixed inset-0 z-40 bg-[#112240] flex flex-col justify-center items-center md:hidden"
-                    >
-                        <div className="flex flex-col gap-8 text-center">
-                            {navLinks.map((link, index) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className="text-xl font-mono text-[#e6f1ff] hover:text-[#64ffda] transition-colors"
-                                >
-                                    <div className="text-[#64ffda] text-xs mb-1">0{index + 1}.</div>
-                                    {link.name}
-                                </Link>
-                            ))}
-                            <button className="mt-4 px-8 py-3 border border-[#64ffda] text-[#64ffda] font-mono rounded hover:bg-[#64ffda]/10">
-                                Resume.pdf
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsOpen(false)}
+                            className="fixed inset-0 bg-[#020c1b]/80 backdrop-blur-sm z-[99] md:hidden"
+                            suppressHydrationWarning
+                        />
+                        {/* Sidebar */}
+                        <motion.div
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "tween", duration: 0.3 }}
+                            className="fixed right-0 top-0 h-screen w-64 z-[100] bg-[#112240] shadow-[-10px_0_30px_rgba(2,12,27,0.5)] flex flex-col p-8 md:hidden shadow-cyan-900/20"
+                        >
+                            {/* Inner Close Button */}
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="self-end text-[#64ffda] p-2 hover:bg-[#112240] rounded mb-12"
+                            >
+                                <X size={32} />
                             </button>
-                        </div>
-                    </motion.div>
+
+                            <div className="flex flex-col gap-10 text-center w-full">
+                                {navLinks.map((link, index) => (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-lg font-mono text-[#e6f1ff] hover:text-[#64ffda] transition-colors group flex flex-col items-center"
+                                    >
+                                        <span className="text-[#64ffda] text-xs mb-1 opacity-70 tracking-widest">0{index + 1}.</span>
+                                        {link.name}
+                                    </Link>
+                                ))}
+
+                                <a
+                                    href="/resume.pdf"
+                                    className="w-full mt-4 py-3 border border-cyan-500 text-cyan-500 text-center font-mono hover:bg-cyan-500/10 transition-all rounded text-sm font-bold tracking-widest"
+                                >
+                                    RESUME_DOWNLOAD
+                                </a>
+                            </div>
+                        </motion.div>
+                    </>
                 )}
             </AnimatePresence>
         </nav>
