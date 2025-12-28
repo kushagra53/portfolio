@@ -11,13 +11,13 @@ const FloatingNodes = () => {
     const nodes = [
         {
             icon: Github,
-            href: "https://github.com",
+            href: "https://github.com/kushagra53",
             label: "GITHUB",
             position: "top-[15%] right-[10%]"
         },
         {
             icon: Linkedin,
-            href: "https://linkedin.com",
+            href: "https://www.linkedin.com/in/kushagra-pandey-bb6b9a285/",
             label: "LINKEDIN",
             position: "top-[45%] left-[5%]"
         },
@@ -82,6 +82,7 @@ const FloatingNodes = () => {
                             opacity: 1, // HARD CODED OPACITY
                             boxShadow: "0 0 20px 5px rgba(255, 255, 255, 0.6)" // HARD CODED GLOW
                         }}
+                        suppressHydrationWarning
                     >
                         <node.icon
                             size={48}
