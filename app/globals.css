@@ -37,21 +37,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
+  overflow-x: hidden;
 }
 
-/* Dot Matrix Background Pattern */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  background-image: radial-gradient(circle, #10b981 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.03;
+/* Grid Background Utility */
+.bg-grid-white\/5 {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 /* Scanline Overlay Effect */
@@ -67,25 +60,26 @@ body::after {
   background: repeating-linear-gradient(0deg,
       transparent,
       transparent 3px,
-      rgba(255, 255, 255, 0.015) 3px,
-      rgba(255, 255, 255, 0.015) 4px);
-  animation: scanlines 10s linear infinite;
+      rgba(16, 185, 129, 0.02) 3px,
+      rgba(16, 185, 129, 0.02) 4px);
+  animation: scanlines 8s linear infinite;
+  opacity: 0.6;
 }
 
 @keyframes scanlines {
   0% {
-    transform: translateY(0);
+    background-position: 0 0;
   }
 
   100% {
-    transform: translateY(4px);
+    background-position: 0 100vh;
   }
 }
 
 /* Page content stays above background */
 main {
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
 
 ::selection {
@@ -136,29 +130,36 @@ textarea {
 
 /* Glitch text effect */
 @keyframes glitch {
+  0% {
+    transform: translate(0);
+    text-shadow: -2px 0 #10b981, 2px 0 #3b82f6;
+  }
 
-  0%,
+  25% {
+    transform: translate(-2px, 2px);
+    text-shadow: -2px 0 #3b82f6, 2px 0 #10b981;
+  }
+
+  50% {
+    transform: translate(-1px, -1px);
+    text-shadow: -2px 0 #10b981, 2px 0 #3b82f6;
+  }
+
+  75% {
+    transform: translate(1px, 2px);
+    text-shadow: -2px 0 #3b82f6, 2px 0 #10b981;
+  }
+
   100% {
     transform: translate(0);
-  }
-
-  20% {
-    transform: translate(-2px, 2px);
-  }
-
-  40% {
-    transform: translate(-2px, -2px);
-  }
-
-  60% {
-    transform: translate(2px, 2px);
-  }
-
-  80% {
-    transform: translate(2px, -2px);
+    text-shadow: -2px 0 #10b981, 2px 0 #3b82f6;
   }
 }
 
-.glitch:hover {
-  animation: glitch 0.3s ease-in-out;
+.glitch-hover:hover {
+  animation: glitch 0.3s ease-in-out infinite;
+}
+
+.glitch-reveal {
+  animation: glitch 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }

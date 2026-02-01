@@ -4,9 +4,9 @@ export const bio = {
   status: "POLISHING_SKILLS",
   tagline: "Software Developer exploring the intersection of Cybersecurity and AI. I build in Windows and Linux VMs, focusing on secure infrastructure and ML-driven threat detection.",
   about: "My journey started with a passion for hacking and understanding how systems break. The realization hit: AI/ML is the edge I need in Cybersecurity. Now I'm building that bridge—combining threat detection with intelligent automation.",
-  github: "https://github.com/kushagra",
-  linkedin: "https://linkedin.com/in/kushagra",
-  email: "kushagra@example.com",
+  github: "https://github.com/kushagra53",
+  linkedin: "https://www.linkedin.com/in/kushagra-pandey-bb6b9a285/",
+  email: "kushagrapandey096@gmail.com",
 };
 
 export const setup = {
@@ -73,8 +73,8 @@ export const terminalLines = [
 ];
 
 export const socialLinks = [
-  { name: "GitHub", url: "https://github.com/kushagra", icon: "github" },
-  { name: "LinkedIn", url: "https://linkedin.com/in/kushagra", icon: "linkedin" },
+  { name: "GitHub", url: "https://github.com/kushagra53", icon: "github" },
+  { name: "LinkedIn", url: "https://linkedin.com/in/kushagra-pandey-bb6b9a285", icon: "linkedin" },
 ];
 
 export const navLinks = [
