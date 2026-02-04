@@ -1,13 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function BackgroundEffects() {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
+            if (containerRef.current) {
+                containerRef.current.style.setProperty("--x", `${e.clientX}px`);
+                containerRef.current.style.setProperty("--y", `${e.clientY}px`);
+            }
         };
 
         window.addEventListener("mousemove", handleMouseMove);
@@ -15,20 +18,12 @@ export default function BackgroundEffects() {
     }, []);
 
     return (
-        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-            {/* Grid Pattern */}
-            <div className="absolute inset-0 bg-grid-white/5 bg-[position:center] [mask-image:linear-gradient(to_bottom,transparent,black)]" />
-
-            {/* Mouse Spotlight */}
-            <div
-                className="absolute w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-3xl transition-transform duration-75 will-change-transform"
-                style={{
-                    transform: `translate(${mousePosition.x - 300}px, ${mousePosition.y - 300}px)`,
-                }}
-            />
-
-            {/* Vignette */}
-            <div className="absolute inset-0 bg-black/40 [mask-image:radial-gradient(circle_at_center,transparent_40%,black_100%)]" />
+        <div
+            ref={containerRef}
+            className="fixed inset-0 z-0 pointer-events-none"
+        >
+            {/* Mouse Spotlight - the only effect we need here since grid is in CSS */}
+            <div className="absolute inset-0 spotlight" />
         </div>
     );
 }
