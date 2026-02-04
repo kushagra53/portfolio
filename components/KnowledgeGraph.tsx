@@ -1,61 +1,68 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Brain, Activity, ArrowRight, Lock, Zap } from "lucide-react";
+import { Shield, Brain, Activity, Zap } from "lucide-react";
 
 const nodes = [
     {
         id: "security",
-        label: "Security / Hacking",
+        label: "Security Engineering",
         icon: Shield,
         color: "text-red-400",
-        description: "Understanding offensive vectors is the only way to build defensive walls."
+        description: "The foundation. Enforcing Zero Trust architectures via Terraform and simulating adversary tactics (CTFs) to preemptively harden infrastructure."
     },
     {
         id: "anomaly",
         label: "Anomaly Detection",
         icon: Activity,
         color: "text-yellow-400",
-        description: "Monitoring patterns in real-time to catch what rules miss."
+        description: "The intersection. Replacing brittle, static signatures with probabilistic models to identify zero-day threats that bypass firewalls."
     },
     {
         id: "aiml",
-        label: "AI / ML",
+        label: "Applied AI / RAG",
         icon: Brain,
         color: "text-emerald-400",
-        description: "Static rules fail. Models adapt. ML is the new firewall."
+        description: "The evolution. Architecting context-aware retrieval systems (RAG) and researching defenses against prompt injection in LLM pipelines."
     },
 ];
 
 export default function KnowledgeGraph() {
     const [activeNode, setActiveNode] = useState<string | null>(null);
     const [typedText, setTypedText] = useState("");
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Typing effect
     useEffect(() => {
-        if (!activeNode) {
-            setTypedText("");
-            return;
-        }
+        // 1. Immediate Cleanup
+        if (intervalRef.current) clearInterval(intervalRef.current);
+        setTypedText("");
+
+        if (!activeNode) return;
 
         const node = nodes.find(n => n.id === activeNode);
         if (!node) return;
 
-        let index = 0;
         const text = node.description;
-        setTypedText("");
+        let index = 0;
 
-        const interval = setInterval(() => {
-            if (index < text.length) {
-                setTypedText(prev => prev + text[index]);
-                index++;
-            } else {
-                clearInterval(interval);
-            }
-        }, 30);
+        // 2. Small delay (100ms) before typing starts makes it feel less "jarring"
+        const timeout = setTimeout(() => {
+            intervalRef.current = setInterval(() => {
+                if (index < text.length) {
+                    // Use the functional update to ensure we always have the latest state
+                    setTypedText(text.substring(0, index + 1));
+                    index++;
+                } else {
+                    if (intervalRef.current) clearInterval(intervalRef.current);
+                }
+            }, 35); // 35ms is the "Sweet Spot" for a professional terminal feel
+        }, 100);
 
-        return () => clearInterval(interval);
+        return () => {
+            clearTimeout(timeout);
+            if (intervalRef.current) clearInterval(intervalRef.current);
+        };
     }, [activeNode]);
 
     return (
@@ -76,13 +83,9 @@ export default function KnowledgeGraph() {
                     </h2>
                 </motion.div>
 
-                {/* Knowledge Graph Visual */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-4 relative">
-
                     {nodes.map((node, index) => (
                         <div key={node.id} className="flex flex-col md:flex-row items-center group relative z-10">
-
-                            {/* Node */}
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -95,17 +98,11 @@ export default function KnowledgeGraph() {
                                 <div className={`mb-2 transition-transform duration-300 ${activeNode === node.id ? 'scale-110' : ''}`}>
                                     <node.icon size={32} className={activeNode === node.id ? node.color : 'text-slate-500'} />
                                 </div>
-                                <span className={`font-mono text-xs text-center px-2 transition-colors duration-300 ${activeNode === node.id ? 'text-slate-100' : 'text-slate-500'}`}>
+                                <span className={`font-mono text-[10px] md:text-xs text-center px-2 transition-colors duration-300 ${activeNode === node.id ? 'text-slate-100' : 'text-slate-500'}`}>
                                     {node.label}
                                 </span>
-
-                                {/* Pulse Effect */}
-                                {activeNode === node.id && (
-                                    <span className="absolute inset-0 rounded-full border border-emerald-500/50 animate-ping opacity-20" />
-                                )}
                             </motion.div>
 
-                            {/* Animated Connector */}
                             {index < nodes.length - 1 && (
                                 <div className="hidden md:flex items-center justify-center w-24 relative overflow-hidden h-1">
                                     <div className="absolute inset-0 bg-slate-800 opacity-30" />
@@ -116,37 +113,25 @@ export default function KnowledgeGraph() {
                                     />
                                 </div>
                             )}
-
-                            {/* Mobile Connector */}
-                            {index < nodes.length - 1 && (
-                                <div className="md:hidden w-1 h-16 relative overflow-hidden">
-                                    <div className="absolute inset-0 bg-slate-800 opacity-30" />
-                                    <motion.div
-                                        className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500 to-transparent h-1/2 w-full"
-                                        animate={{ y: ['-100%', '200%'] }}
-                                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                    />
-                                </div>
-                            )}
                         </div>
                     ))}
                 </div>
 
-                {/* Typing Interaction Area */}
-                <div className="h-24 mt-12 flex justify-center">
+                <div className="h-40 mt-12 flex justify-center items-start">
                     <AnimatePresence mode="wait">
                         {activeNode ? (
                             <motion.div
-                                key="message"
-                                initial={{ opacity: 0, y: 10 }}
+                                key={activeNode} // Key change triggers fresh animation
+                                initial={{ opacity: 0, y: 5 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                className="mt-6 max-w-xl text-center px-4"
+                                exit={{ opacity: 0 }}
+                                className="max-w-2xl text-center px-4 w-full"
                             >
-                                <div className="inline-block p-4 rounded-lg bg-slate-900/50 border border-emerald-500/20 backdrop-blur-sm">
-                                    <p className="font-mono text-emerald-400 text-sm md:text-base min-h-[1.5em]">
-                                        {">"} {typedText}
-                                        <span className="animate-pulse inline-block w-2 H-4 bg-emerald-500 ml-1 align-middle">_</span>
+                                <div className="inline-block p-6 rounded-lg bg-slate-900/50 border border-emerald-500/20 backdrop-blur-sm w-full min-h-[120px]">
+                                    <p className="font-mono text-emerald-400 text-sm md:text-base leading-relaxed tracking-wide text-left">
+                                        <span className="text-emerald-600 mr-2">{">"}</span>
+                                        {typedText}
+                                        <span className="animate-pulse inline-block w-2 h-4 bg-emerald-500 ml-1 align-middle">_</span>
                                     </p>
                                 </div>
                             </motion.div>
@@ -155,11 +140,10 @@ export default function KnowledgeGraph() {
                                 key="prompt"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="mt-6 flex items-center justify-center gap-2 text-slate-600 font-mono text-sm"
+                                className="flex items-center justify-center gap-2 text-slate-600 font-mono text-sm mt-8"
                             >
                                 <Zap size={14} className="animate-pulse" />
-                                HOVER_NODES_TO_DECRYPT
+                                HOVER_NODES_TO_DECRYPT_INTEL
                             </motion.div>
                         )}
                     </AnimatePresence>
