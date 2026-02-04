@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Kushagra | Software Developer",
   description: "DevSecOps and Cybersecurity focused developer, leveraging Machine Learning for anomaly detection and secure cloud infrastructure.",
-  keywords: ["DevSecOps", "Cybersecurity", "Machine Learning", "Software Developer", "AWS", "Terraform"],
+  keywords: ["DevSecOps", "Cybersecurity", "Machine Learning", "Software Developer", "AWS", "Terraform", "Intern", "Looking for Job"],
 };
 
 export default function RootLayout({
@@ -30,6 +30,8 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-slate-950 text-slate-100`}
       >
+        {/* Scanline Effect */}
+        <div className="scanline" />
         {children}
       </body>
     </html>

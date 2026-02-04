@@ -50,12 +50,22 @@ export default function Workstation() {
 
     return (
         <section className="min-h-screen flex items-center pt-20 relative overflow-hidden">
-            {/* Glitch Overlay Text (Decorative) */}
-            <div className="absolute top-20 right-0 font-mono text-[10rem] font-bold text-slate-900/50 select-none pointer-events-none overflow-hidden whitespace-nowrap z-0">
-                SYSTEM_OVERRIDE
-            </div>
+
 
             <div className="max-w-6xl mx-auto px-6 w-full relative z-10">
+                {/* Status Beacon */}
+                <div className="mb-6 flex justify-center md:justify-start">
+                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-sm">
+                        <span className="relative flex h-2 w-2 mr-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span className="font-mono text-[10px] text-emerald-400 font-medium tracking-wide">
+                            SYSTEM STATUS: OPEN FOR INTERNSHIPS & FREELANCE
+                        </span>
+                    </div>
+                </div>
+
                 {/* Workstation Header Bar */}
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
