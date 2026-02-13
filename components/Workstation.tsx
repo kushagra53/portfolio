@@ -52,7 +52,7 @@ export default function Workstation() {
         <section className="min-h-screen flex items-center pt-20 relative overflow-hidden">
 
 
-            <div className="max-w-6xl mx-auto px-6 w-full relative z-10">
+            <div className="max-w-6xl mx-auto px-4 md:px-6 w-full relative z-10">
                 {/* Status Beacon */}
                 <div className="mb-6 flex justify-center md:justify-start">
                     <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-sm">
@@ -112,7 +112,7 @@ export default function Workstation() {
                     >
                         <div className="space-y-2">
                             <motion.h1
-                                className="font-mono text-5xl md:text-7xl font-bold text-slate-100 tracking-tighter glitch-reveal"
+                                className="font-mono text-3xl sm:text-5xl md:text-7xl font-bold text-slate-100 tracking-tighter glitch-reveal"
                                 initial={{ opacity: 0, filter: "blur(10px)" }}
                                 animate={{ opacity: 1, filter: "blur(0px)" }}
                                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -138,7 +138,7 @@ export default function Workstation() {
                             </div>
                         </div>
 
-                        <p className="text-slate-400 text-lg leading-relaxed max-w-xl border-l-2 border-emerald-500/30 pl-6">
+                        <p className="text-slate-400 text-sm md:text-lg leading-relaxed max-w-xl border-l-2 border-emerald-500/30 pl-4 md:pl-6">
                             {bio.about}
                         </p>
 
@@ -149,10 +149,10 @@ export default function Workstation() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.8 + i * 0.1 }}
-                                    className="flex items-center gap-2 px-4 py-2 bg-slate-900/50 border border-slate-800 rounded hover:border-emerald-500/30 transition-colors group cursor-default"
+                                    className="flex items-center gap-2 px-3 md:px-4 py-2 bg-slate-900/50 border border-slate-800 rounded hover:border-emerald-500/30 transition-colors group cursor-default min-h-[44px]"
                                 >
                                     <Activity size={14} className="text-emerald-500/50 group-hover:text-emerald-500 transition-colors" />
-                                    <span className="font-mono text-sm text-slate-300 group-hover:text-emerald-400 transition-colors">
+                                    <span className="font-mono text-xs md:text-sm text-slate-300 group-hover:text-emerald-400 transition-colors">
                                         {item}
                                     </span>
                                 </motion.div>

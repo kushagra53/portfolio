@@ -7,9 +7,7 @@
   --emerald-500: #10b981;
   --slate-800: #1e293b;
   --grid-color: rgba(30, 41, 59, 0.5);
-  /* Slate-800 with opacity */
   --bg-color: #020617;
-  /* Slate-950 */
 }
 
 @theme inline {
@@ -51,7 +49,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Add a subtle vignette to prevent it from looking too "flat" at the edges */
+/* Subtle vignette */
 body::after {
   content: "";
   position: fixed;
@@ -175,4 +173,40 @@ textarea {
 
 .glitch-reveal {
   animation: glitch 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* ═══════════════════════════════════════ */
+/* MOBILE PERFORMANCE OPTIMIZATIONS       */
+/* ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Reduce grid visibility for readability */
+  body {
+    --grid-color: rgba(30, 41, 59, 0.25);
+    background-size: 30px 30px;
+  }
+
+  /* Disable scanline on mobile */
+  .scanline {
+    display: none;
+  }
+
+  /* Disable glitch animations on mobile */
+  .glitch-hover:hover {
+    animation: none;
+  }
+
+  .glitch-reveal {
+    animation: none;
+  }
+
+  /* Smaller spotlight on mobile */
+  .spotlight {
+    background: radial-gradient(300px circle at var(--x) var(--y), rgba(16, 185, 129, 0.05), transparent 40%);
+  }
+
+  /* Softer vignette on mobile */
+  body::after {
+    background: radial-gradient(circle at center, transparent 30%, rgba(2, 6, 23, 0.6) 100%);
+  }
 }

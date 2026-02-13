@@ -31,8 +31,8 @@ function ProjectCard({ folder, index }: { folder: any; index: number }) {
                 {/* Folder Tab */}
                 <div
                     className={`relative z-10 flex items-center justify-between px-5 py-3 border-b transition-colors duration-300 ${hovered
-                            ? "bg-emerald-500/10 border-emerald-500/20"
-                            : "bg-slate-900/80 border-slate-800"
+                        ? "bg-emerald-500/10 border-emerald-500/20"
+                        : "bg-slate-900/80 border-slate-800"
                         }`}
                 >
                     <div className="flex items-center gap-2">
@@ -64,14 +64,14 @@ function ProjectCard({ folder, index }: { folder: any; index: number }) {
                     {folder.projects.map((project: any, pIndex: number) => (
                         <div
                             key={pIndex}
-                            className="group/item p-3 rounded-lg bg-slate-800/20 border border-slate-700/30 hover:bg-slate-800/60 hover:border-emerald-500/30 transition-all cursor-crosshair"
+                            className="group/item p-4 rounded-lg bg-slate-800/20 border border-slate-700/30 hover:bg-slate-800/60 hover:border-emerald-500/30 transition-all cursor-crosshair min-h-[44px]"
                         >
                             <div className="flex items-start gap-3">
                                 <div className="mt-1 p-1 rounded bg-slate-800 text-slate-400 group-hover/item:text-emerald-400 group-hover/item:bg-emerald-500/10 transition-colors">
                                     <Code2 size={12} />
                                 </div>
                                 <div>
-                                    <h4 className="font-mono text-sm text-slate-200 group-hover/item:text-emerald-400 transition-colors">
+                                    <h4 className="font-mono text-xs md:text-sm text-slate-200 group-hover/item:text-emerald-400 transition-colors">
                                         {project.title}
                                     </h4>
                                     <p className="text-xs text-slate-500 mt-1 leading-relaxed">
@@ -97,8 +97,8 @@ function ProjectCard({ folder, index }: { folder: any; index: number }) {
 
 export default function LabGrid() {
     return (
-        <section id="lab" className="py-24">
-            <div className="max-w-6xl mx-auto px-6">
+        <section id="lab" className="py-16 md:py-24">
+            <div className="max-w-6xl mx-auto px-4 md:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -110,7 +110,7 @@ export default function LabGrid() {
                         <span className="font-mono text-xs text-emerald-500 tracking-widest uppercase mb-1 block">
                             Directory Listing
                         </span>
-                        <h2 className="font-mono text-3xl md:text-4xl font-bold text-slate-100">
+                        <h2 className="font-mono text-2xl md:text-4xl font-bold text-slate-100">
                             PROJECT_LAB
                         </h2>
                     </div>
@@ -120,7 +120,7 @@ export default function LabGrid() {
                 </motion.div>
 
                 {/* Lab Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
                     {labFolders.map((folder, index) => (
                         <ProjectCard key={folder.id} folder={folder} index={index} />
                     ))}
